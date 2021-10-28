@@ -30,9 +30,4 @@ namespace Nova.Common.Validators
                 throw new ValidationException(failures);
         }
     }
-
-    public interface IRequestAccessValidator<TRequest> where TRequest : notnull
-    {
-        Task<bool> ValidateAccessAsync(IEnumerable<string> permissions, TRequest request, CancellationToken cancellationToken);
-    }
 }
