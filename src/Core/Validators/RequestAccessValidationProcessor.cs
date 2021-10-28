@@ -17,10 +17,11 @@ namespace Nova.Common.Validators
 
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
-            var result = await _validator.ValidateAccessAsync(_permissionsProvider.Permissions, request, cancellationToken);
+            var context = new RequestAccessValidationContext();
+            var result = await _validator.ValidateAccessAsync(context, _permissionsProvider.Permissions, request, cancellationToken);
 
-            if (!result.IsSuccess)
-                throw new RequestAccessDeniedException { FailedPermissions = result.FailedPermissions };
+            if (result == RequestAccessValidationResult.Failed)
+                throw new RequestAccessDeniedException { FailedPermissions = context.FailedPermissions };
         }
     }
 }
