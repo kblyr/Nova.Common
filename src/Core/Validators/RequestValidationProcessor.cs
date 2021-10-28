@@ -4,11 +4,11 @@ using MediatR.Pipeline;
 
 namespace Nova.Common.Validators
 {
-    sealed class ValidationProcessor<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
+    sealed class RequestValidationProcessor<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
     {
         readonly IEnumerable<IValidator<TRequest>> _validators;
 
-        public ValidationProcessor(IEnumerable<IValidator<TRequest>> validators)
+        public RequestValidationProcessor(IEnumerable<IValidator<TRequest>> validators)
         {
             _validators = validators;
         }
@@ -29,5 +29,10 @@ namespace Nova.Common.Validators
             if (failures.Any())
                 throw new ValidationException(failures);
         }
+    }
+
+    public interface IRequestAccessValidator<TRequest> where TRequest : notnull
+    {
+        Task<bool> ValidateAccessAsync(IEnumerable<string> permissions, TRequest request, CancellationToken cancellationToken);
     }
 }
