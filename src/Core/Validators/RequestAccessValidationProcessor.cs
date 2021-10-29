@@ -7,9 +7,9 @@ namespace Nova.Common.Validators
     sealed class RequestAccessValidationProcessor<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
     {
         readonly IRequestAccessValidator<TRequest> _validator;
-        readonly IPermissionsProvider _permissionsProvider;
+        readonly ICurrentPermissionsProvider _permissionsProvider;
 
-        public RequestAccessValidationProcessor(IRequestAccessValidator<TRequest> validator, IPermissionsProvider permissionsProvider)
+        public RequestAccessValidationProcessor(IRequestAccessValidator<TRequest> validator, ICurrentPermissionsProvider permissionsProvider)
         {
             _validator = validator;
             _permissionsProvider = permissionsProvider;

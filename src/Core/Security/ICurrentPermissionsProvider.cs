@@ -1,6 +1,6 @@
 namespace Nova.Common.Security
 {
-    public interface IPermissionsProvider
+    public interface ICurrentPermissionsProvider
     {
         IEnumerable<string> Permissions { get; }
     }
