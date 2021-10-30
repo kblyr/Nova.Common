@@ -7,8 +7,5 @@ namespace Nova.Common.Validators
     {
         public static IServiceCollection AddRequestValidationProcessor(this IServiceCollection services) => services
             .AddScoped(typeof(IRequestPreProcessor<>), typeof(RequestValidationProcessor<>));
-
-        public static IServiceCollection AddRequestAccessValidationProcessor(this IServiceCollection services) => services
-            .AddScoped(typeof(IRequestPreProcessor<>), typeof(RequestAccessValidationProcessor<>));
     }
 }
