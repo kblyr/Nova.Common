@@ -7,7 +7,7 @@
 
     <!-- NuGet Package Info -->
     <PackageId>Nova.Common.WebApi</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>John Josua Paderon</Authors>
     <Company>Nova</Company>
     <Copyright>Copyright 2021 (c) John Josua Paderon</Copyright>
@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CodeCompanion.FluentEnumerable" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
   </ItemGroup>
