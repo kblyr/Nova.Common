@@ -17,7 +17,7 @@ namespace Nova.Common.Security.AccessValidation
         {
             var context = new RequestAccessValidationContext();
             _configuration.Configure(context, request);
-            await _validator.ValidateAsync(context.Mode, context.Rules, cancellationToken);
+            await _validator.ValidateAsync(AccessValidationMode.All, context.Rules, cancellationToken);
         }
     }
 }
