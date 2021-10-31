@@ -9,7 +9,7 @@ namespace Nova.Common.Security.AccessValidation
         public async Task<bool> ValidateAsync(AccessValidationMode mode, IAccessValidationRuleEnumerable rules, CancellationToken cancellationToken = default)
         {
             if (rules.Count == 0)
-                throw new ArgumentException("No rules to validate");
+                return true;
 
             return mode switch
             {

@@ -4,19 +4,22 @@ namespace Nova.Common.Security.AccessValidation
 {
     sealed class RequestAccessValidationProcessor<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
     {
-        readonly IRequestAccessValidationConfiguration<TRequest> _configuration;
+        readonly IEnumerable<IRequestAccessValidationConfiguration<TRequest>> _configurations;
         readonly IAccessValidator _validator;
 
-        public RequestAccessValidationProcessor(IRequestAccessValidationConfiguration<TRequest> configuration, IAccessValidator validator)
+        public RequestAccessValidationProcessor(IEnumerable<IRequestAccessValidationConfiguration<TRequest>> configurations, IAccessValidator validator)
         {
-            _configuration = configuration;
+            _configurations = configurations;
             _validator = validator;
         }
 
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var context = new RequestAccessValidationContext();
-            _configuration.Configure(context, request);
+
+            foreach (var configuration in _configurations)
+                configuration.Configure(context, request);
+
             await _validator.ValidateAsync(AccessValidationMode.All, context.Rules, cancellationToken);
         }
     }

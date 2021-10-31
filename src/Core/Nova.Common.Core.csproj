@@ -7,7 +7,7 @@
 
     <!-- NuGet Package Info -->
     <PackageId>Nova.Common.Core</PackageId>
-    <Version>0.2.6</Version>
+    <Version>0.2.7</Version>
     <Authors>John Josua Paderon</Authors>
     <Company>Nova</Company>
     <Copyright>Copyright 2021 (c) John Josua Paderon</Copyright>
