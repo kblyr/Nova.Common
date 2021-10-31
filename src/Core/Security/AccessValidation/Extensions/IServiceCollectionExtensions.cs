@@ -7,6 +7,12 @@ namespace Nova.Common.Security.AccessValidation
 {
     public static class IServiceCollectionExtensions
     {
+        public static IServiceCollection AddDefaultAccessValidator(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Singleton)
+        {
+            services.Add(new ServiceDescriptor(typeof(IAccessValidator), typeof(AccessValidator), lifetime));
+            return services;
+        }
+
         public static IServiceCollection AddRequestAccessValidationProcessor(this IServiceCollection services) => services
             .AddScoped(typeof(IRequestPreProcessor<>), typeof(RequestAccessValidationProcessor<>));
 
