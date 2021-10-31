@@ -1,10 +1,10 @@
 using FluentValidation;
 using FluentValidation.Results;
-using MediatR.Pipeline;
+using MediatR;
 
 namespace Nova.Common.Validators
 {
-    sealed class RequestValidationProcessor<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
+    sealed class RequestValidationProcessor<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -13,7 +13,7 @@ namespace Nova.Common.Validators
             _validators = validators;
         }
 
-        public async Task Process(TRequest request, CancellationToken cancellationToken)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var context = new ValidationContext<TRequest>(request);
             var failures = new List<ValidationFailure>();
@@ -28,6 +28,8 @@ namespace Nova.Common.Validators
 
             if (failures.Any())
                 throw new ValidationException(failures);
+
+            return await next().ConfigureAwait(false);
         }
     }
 }

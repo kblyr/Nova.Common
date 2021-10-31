@@ -1,20 +1,20 @@
 using CodeCompanion.Extensions;
 using System.Reflection;
-using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 
 namespace Nova.Common.Security.AccessValidation
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection AddDefaultAccessValidator(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Singleton)
+        public static IServiceCollection AddDefaultAccessValidator(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
             services.Add(new ServiceDescriptor(typeof(IAccessValidator), typeof(AccessValidator), lifetime));
             return services;
         }
 
         public static IServiceCollection AddRequestAccessValidationProcessor(this IServiceCollection services) => services
-            .AddScoped(typeof(IRequestPreProcessor<>), typeof(RequestAccessValidationProcessor<>));
+            .AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestAccessValidationProcessor<,>));
 
         public static IServiceCollection AddValidateAccessImplementations(this IServiceCollection services, Assembly assemblyMarker, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
