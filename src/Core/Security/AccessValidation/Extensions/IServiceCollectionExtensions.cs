@@ -1,39 +1,29 @@
-using CodeCompanion.Extensions;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using MediatR;
 
 namespace Nova.Common.Security.AccessValidation
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection AddDefaultAccessValidator(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped)
-        {
-            services.Add(new ServiceDescriptor(typeof(IAccessValidator), typeof(AccessValidator), lifetime));
-            return services;
-        }
-
-        public static IServiceCollection AddRequestAccessValidationProcessor(this IServiceCollection services) => services
-            .AddScoped(typeof(IPipelineBehavior<,>), typeof(RequestAccessValidationProcessor<,>));
+        static readonly Type _genericType_IValidateAccess = typeof(IValidateAccess<>);
+        static readonly Type _genericType_IRequestAccessValidationConfiguration = typeof(IRequestAccessValidationConfiguration<>);
 
         public static IServiceCollection AddValidateAccessImplementations(this IServiceCollection services, Assembly assemblyMarker, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            var implementations = assemblyMarker.GetConcreteImplementationsOf(typeof(IValidateAccess<>));
-
-            foreach (var implementation in implementations)
-                services.Add(new ServiceDescriptor(implementation.GetInterfaces()[0], implementation, lifetime));
+            foreach (var implementation in assemblyMarker.GetSpecificImplementationTypesOfGenericInterfaceType(_genericType_IValidateAccess))
+            {
+                services.Add(new ServiceDescriptor(implementation.GetSpecificInterfaceType(_genericType_IValidateAccess), implementation, lifetime));
+            }
 
             return services;
         }
 
-        public static IServiceCollection AddValidateAccessImplementations(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped) => services.AddValidateAccessImplementations(CoreAssemblyMarker.Assembly, lifetime);
-
         public static IServiceCollection AddRequestAccessValidationConfigurations(this IServiceCollection services, Assembly assemblyMarker, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            var implementations = assemblyMarker.GetConcreteImplementationsOf(typeof(IRequestAccessValidationConfiguration<>));
-
-            foreach (var implementation in implementations)
-                services.Add(new ServiceDescriptor(implementation.GetInterfaces()[0], implementation, lifetime));
+            foreach (var implementation in assemblyMarker.GetSpecificImplementationTypesOfGenericInterfaceType(_genericType_IRequestAccessValidationConfiguration))
+            {
+                services.Add(new ServiceDescriptor(implementation.GetSpecificInterfaceType(_genericType_IRequestAccessValidationConfiguration), implementation, lifetime));
+            }
 
             return services;
         }

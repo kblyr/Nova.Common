@@ -12,5 +12,5 @@ namespace Nova.Common.Authorization
             CheckMode = checkMode;
             Permissions = permissions;
         }        
-    } 
+    }
 }
