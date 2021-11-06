@@ -16,7 +16,8 @@ namespace Nova.Common
                     .AddValidators();
 
             builder.Services
-                .AddRequestValidationProcessor();
+                .AddRequestValidationProcessor()
+                .AddRequestAccessValidationProcessor();
 
             return builder;
         }
