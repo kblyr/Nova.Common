@@ -6,19 +6,19 @@ namespace Nova.Common.Security
     {
         public static SecurityDependencyBuilder AddCurrentBoundariesProvider(this SecurityDependencyBuilder builder, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            builder.Services.Add(new ServiceDescriptor(typeof(ICurrentBoundariesProvider), typeof(CurrentBoundariesProvider), lifetime));
+            builder.Services.AddCurrentBoundariesProvider(lifetime);
             return builder;
         }
 
         public static SecurityDependencyBuilder AddCurrentRolesProvider(this SecurityDependencyBuilder builder, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            builder.Services.Add(new ServiceDescriptor(typeof(ICurrentRolesProvider), typeof(CurrentRolesProvider), lifetime));
+            builder.Services.AddCurrentRolesProvider(lifetime);
             return builder;
         }
 
         public static SecurityDependencyBuilder AddCurrentPermissionsProvider(this SecurityDependencyBuilder builder, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            builder.Services.Add(new ServiceDescriptor(typeof(ICurrentPermissionsProvider), typeof(CurrentPermissionsProvider), lifetime));
+            builder.Services.AddCurrentPermissionsProvider(lifetime);
             return builder;
         }
     }

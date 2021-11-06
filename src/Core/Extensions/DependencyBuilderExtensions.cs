@@ -6,12 +6,19 @@ namespace Nova.Common
 {
     public static class DependencyBuilderExtensions
     {
-        public static DependencyBuilder WithDefaults(this DependencyBuilder builder) => builder
-            .AddSecurity()
-                .AddAccessValidation()
-                    .AddAccessValidator()
-                    .AddRequestAccessValidationProcessor()
-                .AddValidators()
-                    .AddRequestValidationProcessor();
+        public static DependencyBuilder WithDefaults(this DependencyBuilder builder)
+        {
+            builder
+                .AddSecurity()
+                    .AddAccessValidation()
+                        .AddAccessValidator()
+                        .AddValidateAccessImplementations()
+                    .AddValidators();
+
+            builder.Services
+                .AddRequestValidationProcessor();
+
+            return builder;
+        }
     }
 }

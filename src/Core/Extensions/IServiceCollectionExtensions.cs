@@ -4,9 +4,12 @@ namespace Nova.Common
 {
     public static class IServiceCollectionExtensions
     {
+        static DependencyBuilder? _builder;
+
         public static DependencyBuilder AddNovaCommon(this IServiceCollection services)
         {
-            return new(services);
+            _builder ??= new(services);
+            return _builder;
         }
     }
 }

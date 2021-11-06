@@ -2,6 +2,11 @@ namespace Nova.Common.Authorization
 {
     public static class DependencyBuilderExtensions
     {
-        public static AuthorizationDependencyBuilder AddAuthorization(this DependencyBuilder builder) => new(builder.Services);
+        static AuthorizationDependencyBuilder? _builder;
+        public static AuthorizationDependencyBuilder AddAuthorization(this DependencyBuilder builder)
+        {
+            _builder ??= new(builder.Services);
+            return _builder;
+        }
     }
 }

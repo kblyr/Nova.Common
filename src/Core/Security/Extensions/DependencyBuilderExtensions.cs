@@ -2,6 +2,11 @@ namespace Nova.Common.Security
 {
     public static class DependencyBuilderExtensions
     {
-        public static SecurityDependencyBuilder AddSecurity(this DependencyBuilder builder) => new(builder.Services);
+        static SecurityDependencyBuilder? _builder;
+        public static SecurityDependencyBuilder AddSecurity(this DependencyBuilder builder)
+        {
+            _builder ??= new(builder.Services);
+            return _builder;
+        }
     }
 }
