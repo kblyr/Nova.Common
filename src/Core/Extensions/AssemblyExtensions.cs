@@ -9,7 +9,7 @@ namespace Nova.Common
                 !type.IsGenericTypeDefinition &&
                 !type.ContainsGenericParameters &&
                 type.IsClass &&
-                type.GetInterfaces().Any(interfaceType => interfaceType.GetGenericTypeDefinition().Equals(genericInterfaceType))
+                type.GetInterfaces().Any(interfaceType => (interfaceType.IsConstructedGenericType? interfaceType.GetGenericTypeDefinition() : interfaceType).Equals(genericInterfaceType))
             );
     }
 }

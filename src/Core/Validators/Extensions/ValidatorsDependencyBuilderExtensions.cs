@@ -7,7 +7,7 @@ namespace Nova.Common.Validators
     {
         public static ValidatorsDependencyBuilder AddRequestValidationProcessor(this ValidatorsDependencyBuilder bulider, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            bulider.Services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(RequestValidationProcessor<,>)));
+            bulider.Services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(RequestValidationProcessor<,>), lifetime));
             return bulider;
         }
     }
