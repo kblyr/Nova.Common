@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+using Nova.Common.Configuration;
 using Nova.Common.Security;
 using Nova.Common.Security.AccessValidation;
 using Nova.Common.Validators;
@@ -12,5 +14,12 @@ namespace Nova.Common
                     .AddAccessValidator()
                     .AddValidateAccessImplementations()
                 .AddValidators();
+
+        public static DependencyBuilder ConfigureOptions(this DependencyBuilder builder, IConfiguration configuration)
+        {
+            builder.Services
+                .ConfigureAccessToken(configuration);
+            return builder;
+        }
     }
 }

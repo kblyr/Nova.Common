@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nova.Common
@@ -27,5 +28,8 @@ namespace Nova.Common
             services.Add(new ServiceDescriptor(_openGenericPipelineBehaviorContractType, openGenericPipelineBehaviorImplementationType, lifetime));
             return services;
         }
+
+        public static IServiceCollection ConfigureFromSection<TOptions>(this IServiceCollection services, IConfiguration configuration, string configKey) where TOptions : class => services
+            .Configure<TOptions>(configuration.GetSection(configKey));
     }
 }

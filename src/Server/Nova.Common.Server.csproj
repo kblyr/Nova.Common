@@ -4,6 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Info -->
+    <PackageId>Nova.Common.Server</PackageId>
+    <Version>0.2.12</Version>
+    <Authors>John Josua Paderon</Authors>
+    <Company>Nova</Company>
+    <Copyright>Copyright 2021 (c) John Josua Paderon</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/kblyr/Nova.Common</RepositoryUrl>
+    <Description>Nova.Common.Server</Description>
   </PropertyGroup>
 
   <ItemGroup>
