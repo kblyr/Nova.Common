@@ -7,7 +7,7 @@
 
     <!-- NuGet Package Info -->
     <PackageId>Nova.Common.WebApi</PackageId>
-    <Version>0.2.10</Version>
+    <Version>0.2.12</Version>
     <Authors>John Josua Paderon</Authors>
     <Company>Nova</Company>
     <Copyright>Copyright 2021 (c) John Josua Paderon</Copyright>
