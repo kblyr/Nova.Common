@@ -1,4 +1,3 @@
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nova.Common.Validators
@@ -7,7 +6,7 @@ namespace Nova.Common.Validators
     {
         public static IServiceCollection AddRequestValidationProcessor(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(RequestValidationProcessor<,>), lifetime));
+            services.AddOpenGenericPipelineBehaviorImplementationType(typeof(RequestValidationProcessor<,>), lifetime);
             return services;
         }
     }

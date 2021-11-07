@@ -1,5 +1,4 @@
 using System.Reflection;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Nova.Common.Security.AccessValidation
@@ -17,7 +16,7 @@ namespace Nova.Common.Security.AccessValidation
 
         public static IServiceCollection AddRequestAccessValidationProcessor(this IServiceCollection services, ServiceLifetime lifetime = ServiceLifetime.Scoped)
         {
-            services.Add(new ServiceDescriptor(typeof(IPipelineBehavior<,>), typeof(RequestAccessValidationProcessor<,>), lifetime));
+            services.AddOpenGenericPipelineBehaviorImplementationType(typeof(RequestAccessValidationProcessor<,>), lifetime);
             return services;
         }
 
