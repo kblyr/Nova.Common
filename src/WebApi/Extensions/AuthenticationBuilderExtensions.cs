@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Nova.Common.Configuration;
@@ -32,5 +33,7 @@ namespace Nova.Common
                     }
                 };
             });
+
+        public static AuthenticationBuilder AddJwtBearerWithNovaDefaults(this AuthenticationBuilder builder, IConfiguration configuration) => builder.AddJwtBearerWithNovaDefaults(configuration.GetAccessToken());
     }
 }

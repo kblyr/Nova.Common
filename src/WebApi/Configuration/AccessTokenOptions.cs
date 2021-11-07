@@ -2,6 +2,8 @@ namespace Nova.Common.Configuration
 {
     public record AccessTokenOptions
     {
+        public const string ConfigKey = "AccessToken";
+
         public string IssuerSigningKey { get; init; } = "";
         public TimeSpan Expiration { get; init; }
         public string HeaderName { get; init; } = "";
