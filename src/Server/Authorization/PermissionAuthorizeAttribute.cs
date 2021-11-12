@@ -8,5 +8,9 @@ namespace Nova.Common.Authorization
         {
             Policy = AuthorizePolicyBuilder.Build(AuthorizationDefaults.Policy.Prefixes.Permission, checkMode, permissions);
         }
+
+        public PermissionAuthorizeAttribute(params string[] permissions) : this(AuthorizationCheckMode.Any, permissions) 
+        {
+        }
     }
 }

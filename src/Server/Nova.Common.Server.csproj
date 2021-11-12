@@ -6,28 +6,24 @@
     <Nullable>enable</Nullable>
 
     <!-- NuGet Package Info -->
-    <PackageId>Nova.Common.WebApi</PackageId>
+    <PackageId>Nova.Common.Server</PackageId>
     <Version>0.2.12</Version>
     <Authors>John Josua Paderon</Authors>
     <Company>Nova</Company>
     <Copyright>Copyright 2021 (c) John Josua Paderon</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/kblyr/Nova.Common</RepositoryUrl>
-    <Description>Nova.Common.WebApi</Description>
+    <Description>Nova.Common.Server</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="CodeCompanion.EntityFrameworkCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Nova.Common.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CodeCompanion.EntityFrameworkCore" Version="1.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.5" />
   </ItemGroup>
 
 </Project>
