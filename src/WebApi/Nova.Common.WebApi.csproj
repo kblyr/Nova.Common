@@ -4,6 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Info -->
+    <PackageId>Nova.Common.WebApi</PackageId>
+    <Version>0.3.0-beta</Version>
+    <Authors>John Josua Paderon</Authors>
+    <Company>Nova</Company>
+    <Copyright>Copyright 2021 (c) John Josua Paderon</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/kblyr/Nova.Common</RepositoryUrl>
+    <Description>Nova.Common.WebApi</Description>
   </PropertyGroup>
 
   <ItemGroup>
